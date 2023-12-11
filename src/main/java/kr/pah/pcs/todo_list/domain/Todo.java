@@ -30,4 +30,8 @@ public class Todo {
 
     @Column(name = "create_date")
     private LocalDate createDate;
+
+    public void modifiedCheck() {
+        check = !check;
+    }
 }
