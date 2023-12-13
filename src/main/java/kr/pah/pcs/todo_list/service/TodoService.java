@@ -5,11 +5,13 @@ import kr.pah.pcs.todo_list.dto.CreateTodoDto;
 import kr.pah.pcs.todo_list.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class TodoService {
     private final TodoRepository todoRepository;
@@ -18,6 +20,7 @@ public class TodoService {
         return todoRepository.findAll();
     }
 
+    @Transactional
     public void createTodo(CreateTodoDto createTodoDto) {
         todoRepository.save(Todo.builder()
                         .title(createTodoDto.getTitle())
@@ -25,12 +28,14 @@ public class TodoService {
                         .build());
     }
 
+    @Transactional
     public void checkTodo(Long id) {
         Todo todo = todoRepository.findById(id).get();
         todo.modifiedCheck();
         todoRepository.save(todo);
     }
 
+    @Transactional
     public void deleteTodo(Long id) {
         todoRepository.delete(todoRepository.findById(id).get());
     }
