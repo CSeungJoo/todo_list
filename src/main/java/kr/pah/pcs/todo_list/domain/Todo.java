@@ -1,11 +1,9 @@
 package kr.pah.pcs.todo_list.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -13,9 +11,10 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
 public class Todo {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "todo_id")
     private Long id;
 
@@ -25,13 +24,18 @@ public class Todo {
     @Column
     private String content;
 
-    @Column
-    private boolean check;
+    @Column(nullable = false)
+    private boolean isChecked;
 
     @Column(name = "create_date")
     private LocalDate createDate;
 
+    @PrePersist
+    public void createTodoBefore() {
+        createDate = LocalDate.now();
+        isChecked = false;
+    }
     public void modifiedCheck() {
-        check = !check;
+        isChecked = !isChecked;
     }
 }
