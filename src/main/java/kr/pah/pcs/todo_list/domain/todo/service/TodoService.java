@@ -1,14 +1,13 @@
-package kr.pah.pcs.todo_list.service;
+package kr.pah.pcs.todo_list.domain.todo.service;
 
-import kr.pah.pcs.todo_list.domain.Todo;
-import kr.pah.pcs.todo_list.dto.CreateTodoDto;
-import kr.pah.pcs.todo_list.repository.TodoRepository;
+import kr.pah.pcs.todo_list.domain.todo.domain.Todo;
+import kr.pah.pcs.todo_list.domain.todo.dto.CreateTodoDto;
+import kr.pah.pcs.todo_list.domain.todo.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

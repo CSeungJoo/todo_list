@@ -1,11 +1,10 @@
-package kr.pah.pcs.todo_list.controller;
+package kr.pah.pcs.todo_list.domain.todo.controller;
 
-import kr.pah.pcs.todo_list.common.Result;
-import kr.pah.pcs.todo_list.domain.Todo;
-import kr.pah.pcs.todo_list.dto.CreateTodoDto;
-import kr.pah.pcs.todo_list.service.TodoService;
+import kr.pah.pcs.todo_list.global.common.Result;
+import kr.pah.pcs.todo_list.domain.todo.domain.Todo;
+import kr.pah.pcs.todo_list.domain.todo.dto.CreateTodoDto;
+import kr.pah.pcs.todo_list.domain.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

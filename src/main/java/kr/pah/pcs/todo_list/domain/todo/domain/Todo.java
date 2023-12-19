@@ -1,4 +1,4 @@
-package kr.pah.pcs.todo_list.domain;
+package kr.pah.pcs.todo_list.domain.todo.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package kr.pah.pcs.todo_list.dto;
+package kr.pah.pcs.todo_list.domain.todo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package kr.pah.pcs.todo_list.common;
+package kr.pah.pcs.todo_list.global.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
