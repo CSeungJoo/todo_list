@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -15,8 +16,17 @@ import java.util.List;
 public class TodoService {
     private final TodoRepository todoRepository;
 
-    public List<Todo> findAll() {
+    public List<Todo> getTodos() {
         return todoRepository.findAll();
+    }
+
+    public Todo getTodo(Long id) {
+        Optional<Todo> optTodo = todoRepository.findById(id);
+
+        if (optTodo.isEmpty())
+            throw new IllegalStateException("존재하지 않는 투두입니다.");
+
+        return optTodo.get();
     }
 
     @Transactional
@@ -29,13 +39,17 @@ public class TodoService {
 
     @Transactional
     public void checkTodo(Long id) {
-        Todo todo = todoRepository.findById(id).get();
+        Optional<Todo> optTodo = todoRepository.findById(id);
+
+        if (optTodo.isEmpty())
+            throw new IllegalStateException("존재하지 않는 투두입니다.");
+
+        Todo todo = optTodo.get();
         todo.modifiedCheck();
-        todoRepository.save(todo);
     }
 
     @Transactional
     public void deleteTodo(Long id) {
-        todoRepository.delete(todoRepository.findById(id).get());
+        todoRepository.deleteById(id);
     }
 }
